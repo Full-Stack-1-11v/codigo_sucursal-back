@@ -31,4 +31,10 @@ public class Sucursal {
 
     @OneToMany(mappedBy = "sucursal")
     private List<Empleado> empleados;
+
+    @OneToMany(mappedBy = "sucursal")
+    private List<Factura> facturas;
+
+    @OneToMany(mappedBy = "sucursal")
+    private List<TransaccionContable> transacciones;
 }
