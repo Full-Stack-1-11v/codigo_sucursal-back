@@ -10,48 +10,46 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import cl.perfulandia.sucursal.modelo.Sucursal;
-import cl.perfulandia.sucursal.service.sucursalService;
-
-
+import cl.perfulandia.sucursal.modelo.Horario;
+import cl.perfulandia.sucursal.service.horarioService;
 
 @RestController
-@RequestMapping("/sucursal")
-public class sucursalController {
-    private final sucursalService service;
-    public sucursalController(sucursalService service) { this.service = service; }
+@RequestMapping("/api/v1/horario")
+public class horarioController {
+    private final horarioService service;
+
+    public horarioController(horarioService service) {
+        this.service = service; 
+    }
 
     @GetMapping("/listar")
-    public List<Sucursal> listar() { 
+    public List<Horario> listar() {
         return service.listar(); 
     }
 
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Sucursal> buscarSucursal (@PathVariable long id){
-        try{
-            Sucursal sucursal = service.buscarSucursal(id);
-            return ResponseEntity.ok(sucursal);
-        }catch(Exception e){
-            return ResponseEntity.notFound().build();
-        }
-    }
-    
     @PostMapping("/agregar")
-    public Sucursal guardar(@RequestBody Sucursal sucursal) {
-         return service.guardar(sucursal);
+    public Horario guardar(@RequestBody Horario h) {
+        return service.guardar(h); 
     }
 
-    @DeleteMapping("/eliminar/{id}")
+     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarSucursal(@PathVariable long id){
         try {
-            service.eliminarSucursal(id);
+            service.eliminar(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Horario> buscarSucursal (@PathVariable long id){
+        try{
+            Horario horario = service.buscar(id);
+            return ResponseEntity.ok(horario);
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
     
 }

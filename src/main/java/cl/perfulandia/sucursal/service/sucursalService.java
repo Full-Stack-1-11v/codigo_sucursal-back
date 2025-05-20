@@ -13,11 +13,11 @@ public class sucursalService {
     @Autowired
     private sucursalRepository sucursalRepository;
 
-    public List<Sucursal> listarSucursal() {
+    public List<Sucursal> listar() {
         return sucursalRepository.findAll();
     }
 
-    public Sucursal guardarSucursal(Sucursal sucursal){
+    public Sucursal guardar(Sucursal sucursal){
         return sucursalRepository.save(sucursal);
     }
 

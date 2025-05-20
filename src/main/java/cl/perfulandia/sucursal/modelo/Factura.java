@@ -1,34 +1,30 @@
 package cl.perfulandia.sucursal.modelo;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Data
 @Entity
-@Table(name="Sucursal")
+@Table(name="Factura")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sucursal {
+public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long sucursalId;
+    private Long facturaId;
 
-    @Column(nullable=false)
-    private String nombre;
-    
-    @Column(nullable = false)
-    private String direccion;
+    private String numero;
+    private LocalDateTime fecha;
+    private Double total;
 
-    @OneToMany(mappedBy = "sucursal")
-    private List<Empleado> empleados;
+    @ManyToOne
+    private Sucursal sucursal;
 }

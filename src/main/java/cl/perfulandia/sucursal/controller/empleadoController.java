@@ -10,48 +10,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import cl.perfulandia.sucursal.modelo.Sucursal;
-import cl.perfulandia.sucursal.service.sucursalService;
-
-
+import cl.perfulandia.sucursal.modelo.Empleado;
+import cl.perfulandia.sucursal.service.empleadoService;
 
 @RestController
-@RequestMapping("/sucursal")
-public class sucursalController {
-    private final sucursalService service;
-    public sucursalController(sucursalService service) { this.service = service; }
+@RequestMapping("/api/v1/empleado")
+public class empleadoController {
+    private final empleadoService service;
+
+    public empleadoController(empleadoService service) {
+        this.service = service; 
+    }
 
     @GetMapping("/listar")
-    public List<Sucursal> listar() { 
+    public List<Empleado> listar() {
         return service.listar(); 
     }
 
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<Sucursal> buscarSucursal (@PathVariable long id){
-        try{
-            Sucursal sucursal = service.buscarSucursal(id);
-            return ResponseEntity.ok(sucursal);
-        }catch(Exception e){
-            return ResponseEntity.notFound().build();
-        }
-    }
-    
     @PostMapping("/agregar")
-    public Sucursal guardar(@RequestBody Sucursal sucursal) {
-         return service.guardar(sucursal);
+    public Empleado guardar(@RequestBody Empleado empleado) {
+        return service.guardar(empleado); 
     }
+
+    
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminarSucursal(@PathVariable long id){
         try {
-            service.eliminarSucursal(id);
+            service.eliminar(id);
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }
 
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity<Empleado> buscarSucursal (@PathVariable long id){
+        try{
+            Empleado empleado = service.buscar(id);
+            return ResponseEntity.ok(empleado);
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    
 }

@@ -1,13 +1,13 @@
 package cl.perfulandia.sucursal.modelo;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,20 +15,19 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name="Sucursal")
+@Table(name="Horario")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sucursal {
+public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long sucursalId;
+    private Long horarioId;
 
-    @Column(nullable=false)
-    private String nombre;
-    
-    @Column(nullable = false)
-    private String direccion;
+    private LocalDateTime inicioHorario;
+    private LocalDateTime finHorario;
 
-    @OneToMany(mappedBy = "sucursal")
-    private List<Empleado> empleados;
+    @ManyToOne
+    @JoinColumn(name = "empleado_id")
+    private Empleado empleado;
+
 }
