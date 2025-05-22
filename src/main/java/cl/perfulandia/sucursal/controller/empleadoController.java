@@ -14,7 +14,7 @@ import cl.perfulandia.sucursal.modelo.Empleado;
 import cl.perfulandia.sucursal.service.empleadoService;
 
 @RestController
-@RequestMapping("/api/v1/empleado")
+@RequestMapping("/sucursal/empleado")
 public class empleadoController {
     private final empleadoService service;
 

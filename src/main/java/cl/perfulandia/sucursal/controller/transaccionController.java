@@ -14,7 +14,7 @@ import cl.perfulandia.sucursal.modelo.TransaccionContable;
 import cl.perfulandia.sucursal.service.transaccionService;
 
 @RestController
-@RequestMapping("/api/v1/contabilidad")
+@RequestMapping("/sucursal/contabilidad")
 public class transaccionController {
     private final transaccionService service;
 

@@ -21,12 +21,11 @@ import lombok.NoArgsConstructor;
 public class Sucursal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="sucursal_id")
     private long sucursalId;
-
-    @Column(nullable=false)
+    @Column(name="nombre")
     private String nombre;
-    
-    @Column(nullable = false)
+    @Column(name="direccion")
     private String direccion;
 
     @OneToMany(mappedBy = "sucursal")

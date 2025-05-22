@@ -14,7 +14,7 @@ import cl.perfulandia.sucursal.modelo.Factura;
 import cl.perfulandia.sucursal.service.facturaService;
 
 @RestController
-@RequestMapping("/api/v1/factura")
+@RequestMapping("/sucursal/factura")
 public class facturaController {
     private final facturaService service;
 

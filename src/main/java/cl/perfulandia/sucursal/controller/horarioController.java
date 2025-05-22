@@ -14,7 +14,7 @@ import cl.perfulandia.sucursal.modelo.Horario;
 import cl.perfulandia.sucursal.service.horarioService;
 
 @RestController
-@RequestMapping("/api/v1/horario")
+@RequestMapping("/sucursal/horario")
 public class horarioController {
     private final horarioService service;
 
