@@ -29,8 +29,14 @@ public class TransaccionContable {
     private Double monto;
     @Column(name="fecha")
     private LocalDateTime fecha;
+    @Column(name="tipo")
+    private String tipo;
 
     @ManyToOne
     @JoinColumn(name = "sucursal_id")
     private Sucursal sucursal;
+
+    @ManyToOne
+    @JoinColumn(name = "factura_id")
+    private Factura factura;
 }
