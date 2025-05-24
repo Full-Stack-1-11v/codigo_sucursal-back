@@ -1,6 +1,8 @@
 package cl.perfulandia.sucursal.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import cl.perfulandia.sucursal.modelo.Factura;
@@ -8,25 +10,33 @@ import cl.perfulandia.sucursal.repository.facturaRepository;
 
 @Service
 public class facturaService {
-    private final facturaRepository repository;
+    private final facturaRepository facturaRepository;
 
-    public facturaService(facturaRepository repository) {
-        this.repository = repository; 
+    public facturaService(facturaRepository facturaRepository) {
+        this.facturaRepository = facturaRepository;
     }
 
     public List<Factura> listar() {
-        return repository.findAll(); 
+        return facturaRepository.findAll(); 
+    }
+
+    public List<Factura> obtenerPorSucursal(Long sucursalId) {
+        return facturaRepository.findBySucursalSucursalId(sucursalId);
+    }
+
+    public List<Factura> obtenerPorFechas(LocalDate inicio, LocalDate fin) {
+        return facturaRepository.findByFechaBetween(inicio, fin);
     }
 
     public Factura guardar(Factura factura) {
-        return repository.save(factura); 
-    }
-    
-    public void eliminar (long id){
-        repository.deleteById(id);
+        return facturaRepository.save(factura);
     }
 
-    public Factura buscar(long id){
-        return repository.findById(id).get();
+    public Optional<Factura> obtenerPorId(Long id) {
+        return facturaRepository.findById(id);
+    }
+
+    public void eliminar(long id){
+        facturaRepository.deleteById(id);
     }
 }

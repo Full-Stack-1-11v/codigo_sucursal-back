@@ -16,6 +16,14 @@ public class empleadoService {
         this.repository = repository; 
     }
 
+    public List<Empleado> buscarPorNombre(String nombreEmpleado) {
+        return repository.findByNombreEmpleado(nombreEmpleado);
+    }
+
+    public List<Empleado> obtenerPorSucursal(Long sucursalId) {
+        return repository.findBySucursalSucursalId(sucursalId);
+    }
+
     public List<Empleado> listar() {
         return repository.findAll(); 
     }

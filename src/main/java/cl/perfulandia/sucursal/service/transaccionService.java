@@ -15,6 +15,14 @@ public class transaccionService {
         this.repository = repository; 
     }
 
+    public List<TransaccionContable> obtenerPorSucursal(Long sucursalId) {
+        return repository.findBySucursalSucursalId(sucursalId);
+    }
+
+    public List<TransaccionContable> obtenerPorTipo(String tipo) {
+        return repository.findByTipo(tipo);
+    }
+
     public List<TransaccionContable> listar() {
         return repository.findAll(); 
     }

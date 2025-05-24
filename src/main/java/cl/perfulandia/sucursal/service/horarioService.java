@@ -1,6 +1,7 @@
 package cl.perfulandia.sucursal.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -10,25 +11,29 @@ import cl.perfulandia.sucursal.repository.horarioRepository;
 
 @Service
 public class horarioService {
-    private final horarioRepository repository;
+    private final horarioRepository horarioRepository;
 
-    public horarioService(horarioRepository repository) {
-        this.repository = repository; 
+    public horarioService(horarioRepository horarioRepository) {
+        this.horarioRepository = horarioRepository;
     }
 
-    public List<Horario> listar() {
-        return repository.findAll(); 
+    public List<Horario> obtenerPorEmpleado(Long empleadoId) {
+        return horarioRepository.findByEmpleadoEmpleadoId(empleadoId);
+    }
+
+    public List<Horario> obtenerPorDiaSemana(String diaSemana) {
+        return horarioRepository.findByDiaSemana(diaSemana);
     }
 
     public Horario guardar(Horario horario) {
-        return repository.save(horario); 
+        return horarioRepository.save(horario);
     }
 
-    public void eliminar (long id){
-        repository.deleteById(id);
+    public Optional<Horario> obtenerPorId(Long id) {
+        return horarioRepository.findById(id);
     }
 
-    public Horario buscar(long id){
-        return repository.findById(id).get();
+    public void eliminar (Long id){
+        horarioRepository.deleteById(id);
     }
 }

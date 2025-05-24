@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import cl.perfulandia.sucursal.modelo.TransaccionContable;
 import cl.perfulandia.sucursal.service.transaccionService;
@@ -20,6 +21,16 @@ public class transaccionController {
 
     public transaccionController(transaccionService service) {
         this.service = service; 
+    }
+
+    @GetMapping("/sucursal/{sucursalId}")
+    public ResponseEntity<List<TransaccionContable>> porSucursal(@PathVariable Long sucursalId) {
+        return ResponseEntity.ok(service.obtenerPorSucursal(sucursalId));
+    }
+
+    @GetMapping("/tipo")
+    public ResponseEntity<List<TransaccionContable>> porTipo(@RequestParam String tipo) {
+        return ResponseEntity.ok(service.obtenerPorTipo(tipo));
     }
 
     @GetMapping("/listar")

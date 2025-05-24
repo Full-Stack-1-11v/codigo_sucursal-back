@@ -2,6 +2,7 @@ package cl.perfulandia.sucursal.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,13 +28,17 @@ public class Sucursal {
     private String nombre;
     @Column(name="direccion")
     private String direccion;
-
-    @OneToMany(mappedBy = "sucursal")
+    
+    public Long getId() {
+        return sucursalId;
+    }
+    
+    @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
     private List<Empleado> empleados;
 
-    @OneToMany(mappedBy = "sucursal")
+    @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
     private List<Factura> facturas;
 
-    @OneToMany(mappedBy = "sucursal")
+    @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
     private List<TransaccionContable> transacciones;
 }

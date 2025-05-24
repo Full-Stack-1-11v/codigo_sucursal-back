@@ -28,7 +28,8 @@ public class Horario {
     private LocalDateTime inicioHorario;
     @Column(name="fin_horario")
     private LocalDateTime finHorario;
-
+    @Column(name="dia_semana")
+    private String diaSemana;
     @ManyToOne
     @JoinColumn(name = "empleado_id")
     private Empleado empleado;

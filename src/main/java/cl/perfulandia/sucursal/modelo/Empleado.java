@@ -2,6 +2,7 @@ package cl.perfulandia.sucursal.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +35,9 @@ public class Empleado {
     @JoinColumn(name = "sucursal_id")
     private Sucursal sucursal;
 
-    @OneToMany(mappedBy = "empleado")
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
     private List<Horario> horarios;
+
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    private List<Factura> facturas;
 }
