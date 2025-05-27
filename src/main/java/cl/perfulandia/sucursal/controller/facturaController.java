@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,10 +46,9 @@ public class facturaController {
         return ResponseEntity.ok(facturaService.obtenerPorFechas(inicio, fin));
     }
 
-    //Creo una factura
-    @PostMapping("/crear")
-    public ResponseEntity<Factura> crearFactura(@RequestBody Factura factura) {
-        return new ResponseEntity<>(facturaService.guardar(factura), HttpStatus.CREATED);
+    @PostMapping("/agregar")
+    public Factura guardar(@RequestBody Factura factura) {
+        return facturaService.guardar(factura); 
     }
 
     //obtengo factura por id

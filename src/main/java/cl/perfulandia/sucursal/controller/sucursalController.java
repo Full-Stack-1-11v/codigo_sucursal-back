@@ -2,7 +2,7 @@ package cl.perfulandia.sucursal.controller;
 
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +18,22 @@ import cl.perfulandia.sucursal.service.sucursalService;
 @RestController
 @RequestMapping("/sucursal/sucursal")
 public class sucursalController {
-    private final sucursalService sucursalService;
+    @Autowired
+    private     sucursalService sucursalService;
     public sucursalController(sucursalService sucursalService) {
         this.sucursalService = sucursalService;
     }
     
 
+    @PostMapping("/{sucursalId}/productos")
+    public ResponseEntity<String> asignarProductosASucursal(
+            @PathVariable Long sucursalId,
+            @RequestBody List<Long> idsProductos) {
 
+        sucursalService.asignarProductosASucursal(sucursalId, idsProductos);
+        return ResponseEntity.ok("Productos asignados correctamente a la sucursal " + sucursalId);
+    }
+    
     @GetMapping("/nombre")
     public ResponseEntity<Sucursal> BuscarPorNombre(@RequestParam String nombre) {
         return sucursalService.obtenerPorNombre(nombre)

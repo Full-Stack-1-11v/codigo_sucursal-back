@@ -39,8 +39,8 @@ public class transaccionController {
     }
 
     @PostMapping("/agregar")
-    public TransaccionContable guardar(@RequestBody TransaccionContable t) {
-        return service.guardar(t); 
+    public TransaccionContable guardar(@RequestBody TransaccionContable transaccion) {
+        return service.guardar(transaccion); 
     }
 
      @DeleteMapping("/eliminar/{id}")

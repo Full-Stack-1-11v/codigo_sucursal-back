@@ -1,8 +1,6 @@
 package cl.perfulandia.sucursal.controller;
 
 import java.util.List;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import cl.perfulandia.sucursal.modelo.Horario;
 import cl.perfulandia.sucursal.service.horarioService;
 
@@ -35,10 +35,9 @@ public class horarioController {
         return ResponseEntity.ok(horarioService.obtenerPorDiaSemana(diaSemana));
     }
 
-    //Creo un horario
-    @PostMapping("/crear")
-    public ResponseEntity<Horario> crearHorario(@RequestBody Horario horario) {
-        return new ResponseEntity<>(horarioService.guardar(horario), HttpStatus.CREATED);
+   @PostMapping("/agregar")
+    public Horario guardar(@RequestBody Horario horario) {
+        return horarioService.guardar(horario); 
     }
 
     //Obtengo horario por id
