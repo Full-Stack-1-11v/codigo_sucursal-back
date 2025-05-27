@@ -15,7 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
 @Entity
-@Table(name="Horario")
+@Table(name="Transaccion")
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransaccionContable {
