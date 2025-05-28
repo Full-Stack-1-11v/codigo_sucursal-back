@@ -2,6 +2,8 @@ package cl.perfulandia.sucursal.modelo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,10 +36,11 @@ public class Sucursal {
     }
     
     @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Empleado> empleados;
 
     @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
-    private List<Factura> facturas;
+    private List<Factura> facturas; 
 
     @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL)
     private List<TransaccionContable> transacciones;

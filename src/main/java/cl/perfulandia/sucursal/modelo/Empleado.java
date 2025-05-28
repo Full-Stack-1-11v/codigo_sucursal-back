@@ -2,6 +2,9 @@ package cl.perfulandia.sucursal.modelo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,11 +36,13 @@ public class Empleado {
 
     @ManyToOne
     @JoinColumn(name = "sucursal_id")
+    @JsonBackReference
     private Sucursal sucursal;
 
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
     private List<Horario> horarios;
 
     @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Factura> facturas;
 }
