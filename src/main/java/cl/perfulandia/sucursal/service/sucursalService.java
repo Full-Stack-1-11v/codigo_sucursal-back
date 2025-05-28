@@ -39,8 +39,8 @@ public class sucursalService {
         sucursalRepository.deleteById(id);
     }
 
-    public void asignarProductosASucursal(Long sucursalId, List<Long> idsProductos) {
-        String respuesta = inventarioClient.agregarProductosASucursal(sucursalId, idsProductos);
+    public void asignarProductosASucursal(Long sucursalId, List<Long> idProductos) {
+        String respuesta = inventarioClient.agregarProductosASucursal(sucursalId, idProductos);
         System.out.println(respuesta);
     }
     

@@ -21,5 +21,5 @@ public interface InventarioClient {
     List<MovimientoDto> obtenerMovimientosPorSucursal(@PathVariable("sucursalId") Long sucursalId);
 
     @PostMapping("/inventario/sucursal/{sucursalId}/agregar")
-    String agregarProductosASucursal(@PathVariable("sucursalId") Long sucursalId, @RequestBody List<Long> idsProductos);
+    String agregarProductosASucursal(@PathVariable("sucursalId") Long sucursalId, @RequestBody List<Long> idProductos);
 }

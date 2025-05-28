@@ -28,12 +28,12 @@ public class sucursalController {
     @PostMapping("/{sucursalId}/productos")
     public ResponseEntity<String> asignarProductosASucursal(
             @PathVariable Long sucursalId,
-            @RequestBody List<Long> idsProductos) {
+            @RequestBody List<Long> idProductos) {
 
-        sucursalService.asignarProductosASucursal(sucursalId, idsProductos);
+        sucursalService.asignarProductosASucursal(sucursalId, idProductos);
         return ResponseEntity.ok("Productos asignados correctamente a la sucursal " + sucursalId);
     }
-    
+
     @GetMapping("/nombre")
     public ResponseEntity<Sucursal> BuscarPorNombre(@RequestParam String nombre) {
         return sucursalService.obtenerPorNombre(nombre)
